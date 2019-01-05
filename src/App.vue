@@ -1,29 +1,31 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    
+    <h1>Fan Lore</h1>
+    
+    
+    <at-menu mode="horizontal" active-name="1">
+      <at-menu-item name="1"><i class="icon icon-home"></i>Navigation One</at-menu-item>
+      <at-menu-item name="2" disabled><i class="icon icon-layers"></i>Navigation Two</at-menu-item>
+      <at-submenu>
+        <template slot="title"><i class="icon icon-life-buoy"></i>Navigation Three - Submenu</template>
+        <at-menu-item-group title="Group One">
+          <at-menu-item name="3-1">Submenu One</at-menu-item>
+          <at-menu-item name="3-2" disabled>Submenu Two</at-menu-item>
+        </at-menu-item-group>
+        <at-menu-item-group title="Group Two">
+          <at-menu-item name="3-3">Submenu Three</at-menu-item>
+          <at-menu-item name="3-4">Submenu Four</at-menu-item>
+        </at-menu-item-group>
+      </at-submenu>
+      <at-menu-item name="4"><i class="icon icon-settings"></i>Navigation Four</at-menu-item>
+    </at-menu>
+    
+    
     <router-view/>
   </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+
 </style>
