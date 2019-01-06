@@ -1,31 +1,94 @@
 <template>
-  <div id="app">
+  <div id="app">  
     
-    <h1>Fan Lore</h1>
-    
-    
-    <at-menu mode="horizontal" active-name="1">
-      <at-menu-item name="1"><i class="icon icon-home"></i>Navigation One</at-menu-item>
-      <at-menu-item name="2" disabled><i class="icon icon-layers"></i>Navigation Two</at-menu-item>
-      <at-submenu>
-        <template slot="title"><i class="icon icon-life-buoy"></i>Navigation Three - Submenu</template>
-        <at-menu-item-group title="Group One">
-          <at-menu-item name="3-1">Submenu One</at-menu-item>
-          <at-menu-item name="3-2" disabled>Submenu Two</at-menu-item>
-        </at-menu-item-group>
-        <at-menu-item-group title="Group Two">
-          <at-menu-item name="3-3">Submenu Three</at-menu-item>
-          <at-menu-item name="3-4">Submenu Four</at-menu-item>
-        </at-menu-item-group>
-      </at-submenu>
-      <at-menu-item name="4"><i class="icon icon-settings"></i>Navigation Four</at-menu-item>
-    </at-menu>
-    
+    <nav-bar/>   
     
     <router-view/>
+
+    <footer class="container">
+      <hr>
+      <p class="text-center">Fan-Lore.com &copy; 2019</p>
+    </footer>
   </div>
 </template>
 
+<script>
+import { Auth } from 'aws-amplify'
+import { AmplifyEventBus } from 'aws-amplify-vue'
+import { mapMutations } from 'vuex'
+import { mapState } from 'vuex'
+import NavBar from '@/components/NavBar.vue'
+export default {
+  name: 'App',
+  components: {
+      NavBar
+  },
+  data () {
+      return {
+          
+      }
+  },
+    async beforeCreate() {
+    try {
+      const user = await Auth.currentAuthenticatedUser()
+      this.login(user);
+    } catch (err) {
+      this.logout();
+    }
+    AmplifyEventBus.$on('authState', info => {
+      if (info === 'signedIn') {
+        this.getUserInfo();
+      } else {
+        this.logout()
+      }
+    });
+  },
+  computed:{
+    ...mapState([
+      'signedIn',
+      'user'
+    ])
+  },
+  methods: {
+    ...mapMutations([
+      'login',
+      'logout'
+    ]),
+    
+    getUserInfo: async function(){
+      let user = await Auth.currentAuthenticatedUser();
+      this.login(user);
+    }
+  }
+}
+</script>
+
 <style lang="scss">
 
+@import url('https://fonts.googleapis.com/css?family=Bree+Serif');
+$primary-color: #2e5bec;
+$dark-color: #3e396b;
+@import "~spectre.css/src/spectre";
+
+
+html{
+  padding-top: 60px;
+}
+
+
+
+.container{
+      max-width: 1280px;
+      padding-top: 20px;
+}
+
+footer{
+  max-width: 1280px;
+}
+
+footer hr {
+    border-top: 1px solid #e8e8e8;
+    border-bottom: none;
+    margin: 30px 0;
+}
 </style>

@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "fanlore-20190105211131-authRole",
+            "UnauthRoleArn": "arn:aws:iam::229093474365:role/fanlore-20190105211131-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::229093474365:role/fanlore-20190105211131-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "fanlore-20190105211131-deployment",
+            "UnauthRoleName": "fanlore-20190105211131-unauthRole",
+            "StackName": "fanlore-20190105211131",
+            "StackId": "arn:aws:cloudformation:us-east-2:229093474365:stack/fanlore-20190105211131/625124b0-1158-11e9-9944-06a8021e9aec"
+        }
+    }
+}

@@ -1,0 +1,16 @@
+projects:
+  fanlore:
+    schemaPath: src\graphql\schema.json
+    includes:
+      - story
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: src\API.ts
+        docsFilePath: src\graphql
+        graphQLApiId: vnvyxqwer5fczkecn2fm3s5emu
+      endpoints:
+        prod: >-
+          https://3kh4pfeaxbgrbeybeaqoghcaqy.appsync-api.us-east-2.amazonaws.com/graphql

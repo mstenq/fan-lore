@@ -1,0 +1,13 @@
+{
+    "AppSyncApiName": "fanlore",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authcognito9d3b3769",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "schemaGraphql": "s3://fanlore-20190105211131-deployment/amplify-appsync-files/schema.graphql.1546791118122",
+    "ResolverBucket": "fanlore-20190105211131-deployment",
+    "ResolverRootKey": "amplify-appsync-files",
+    "DeploymentTimestamp": "1546791118122"
+}
